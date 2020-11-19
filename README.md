@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column       | Type       | Options                        |
-| ---------    | ---------- | ------------------------------ |
-| title        | string     | null: false                    |
-| intro        | text       | null: false                    |
-| category_id  | integer    | null: false                    |
-| condition_id | integer    | null: false                    |
-| delivery_id  | integer    | null: false                    |
-| area_id      | integer    | null: false                    |
-| date_id      | integer    | null: false                    |
-| price        | integer    | null: false                    |
-| user         | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| intro         | text       | null: false                    |
+| category_id   | integer    | null: false                    |
+| condition_id  | integer    | null: false                    |
+| delivery_id   | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| date_id       | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -61,7 +61,7 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | postal_code     | string     | null: false                    |
-| prefectures_id  | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | municipality    | string     | null: false                    |
 | banchi          | string     | null: false                    |
 | building        | string     |                                |
