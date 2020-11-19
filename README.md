@@ -4,6 +4,7 @@
 
 | Column               | Type    | Options                   |
 | -------------------- | ------- | ------------------------- |
+| nickname             | string  | null: false               |
 | family_name          | string  | null: false               |
 | first_name           | string  | null: false               |
 | family_name_furigama | string  | null: false               |
@@ -32,33 +33,35 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :logs
+- belongs_to :user
+- belongs_to :log
 
 ## logs テーブル
 
-| Column | Type       | Options     |
-| ------ | ---------- | ----------- |
-| user   | references | null: false |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
-- has_one :addresses
+- belongs_to :item
+- has_one :address
 
 
 
 ## addresses テーブル
 
-| Column          | Type    | Options     |
-| --------------- | ------- | ----------- |
-| postal_code     | string  | null: false |
-| prefectures_id  | integer | null: false |
-| municipality    | string  | null: false |
-| banchi          | string  | null: false |
-| building        | string  |             |
-| tel             | string  | null: false | 
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postal_code     | string     | null: false                    |
+| prefectures_id  | integer    | null: false                    |
+| municipality    | string     | null: false                    |
+| banchi          | string     | null: false                    |
+| building        | string     |                                |
+| tel             | string     | null: false                    |
+| log_id          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :logs
+- belongs_to :log
