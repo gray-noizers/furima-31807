@@ -20,21 +20,21 @@
 
 ## items テーブル
 
-| Column       | Type    | Options     |
-| ---------    | ------- | ----------- |
-| title        | string  | null: false |
-| intro        | text    | null: false |
-| category_id  | integer | null: false |
-| condition_id | integer | null: false |
-| delivery_id  | integer | null: false |
-| area_id      | integer | null: false |
-| date_id      | integer | null: false |
-| price        | integer | null: false |
+| Column       | Type       | Options                        |
+| ---------    | ---------- | ------------------------------ |
+| title        | string     | null: false                    |
+| intro        | text       | null: false                    |
+| category_id  | integer    | null: false                    |
+| condition_id | integer    | null: false                    |
+| delivery_id  | integer    | null: false                    |
+| area_id      | integer    | null: false                    |
+| date_id      | integer    | null: false                    |
+| price        | integer    | null: false                    |
+| user         | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :log
 
 ## logs テーブル
 
@@ -45,7 +45,6 @@
 
 ### Association
 
-- belongs_to :item
 - has_one :address
 
 
@@ -60,7 +59,7 @@
 | banchi          | string     | null: false                    |
 | building        | string     |                                |
 | tel             | string     | null: false                    |
-| log_id          | references | null: false, foreign_key: true |
+| log             | references | null: false, foreign_key: true |
 
 ### Association
 
