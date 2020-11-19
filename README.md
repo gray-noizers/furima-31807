@@ -11,11 +11,12 @@
 | first_name_furigama  | string  | null: false               |
 | email                | string  | null: false, unique: true |
 | encrypted_password   | string  | null: false               | 
-| birthday             | integer | null: false               |
+| birthday             | date    | null: false               |
 
 ### Association
 
 - has_many :items
+- has_many :logs
 
 
 ## items テーブル
