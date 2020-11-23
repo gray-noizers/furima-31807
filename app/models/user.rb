@@ -4,18 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
-  validates :family_name, presence: true
-  validates :first_name, presence: true
-  validates :family_name_furigana, presence: true
-  validates :first_name_furigana, presence: true
-  validates :email, presence: true
-  validates :encrypted_password, presence: true
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :family_name, format: { with: [ぁ-んァ-ン一-龥]}
+    validates :first_name format: { with: [ぁ-んァ-ン一-龥]}
+    validates :family_name_furigana, format: { with: [ア-ン]}
+    validates :first_name_furigana, format: { with: [ア-ン]}
+    validates :email, uniqueness: true
+    validates :password, length: { minimum: 6 }, format: { with: /^(?=.*?[a-z])(?=.*?\d)[a-z\d]$/i } 
+    validates :password_confirmation
+    validates :birthday
+  end
 end
 
-#validates :nickname, presence: true, length: { maximum: 6 }
-  #validates :password, presence: true, confirmation: true
-  #validates :password_confirmation, presence: true
-  #validates :family_name, presence: true,
-  #validates :email, presence: true, uniqueness: true

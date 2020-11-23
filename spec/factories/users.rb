@@ -8,7 +8,6 @@ FactoryBot.define do
       email                 {"test@example"}
       password              {"000000"}
       password_confirmation {password}
-      birthday              {"test"}
+      birthday              {"1997/01/04"}
     end
 end
-  
