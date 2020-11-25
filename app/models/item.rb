@@ -1,16 +1,16 @@
 class Item < ApplicationRecord
-    belongs_to :uer
+    belongs_to :user
     has_one_attached :image
 
     with_options presence: true do
         validates :title
-        validates :intro, format: {with: /\A[ぁ-んァ-ン一-龥]/}
-        validates :category_id, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
-        validates :family_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/ }
-        validates :first_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/ }
-        validates :email, uniqueness: true
-        validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[\w-]{8,128}+\z/i } 
-        validates :password_confirmation
-        validates :birthday
+        validates :intro
+        validates :category_id
+        validates :condition_id
+        validates :delivery_id
+        validates :prefecture_id
+        validates :daycount_id
+        validates :price
+        validates :user
     end
 end
