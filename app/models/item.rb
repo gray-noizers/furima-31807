@@ -3,6 +3,7 @@ class Item < ApplicationRecord
     has_one_attached :image
 
     with_options presence: true do
+        validates :image
         validates :title
         validates :intro
         validates :category_id
@@ -10,7 +11,11 @@ class Item < ApplicationRecord
         validates :delivery_id
         validates :prefecture_id
         validates :daycount_id
-        validates :price
         validates :user
     end
+
+    validates :price, numericality:{
+        greater_than_or_equal_to: 300,
+        less_than: 9999999
+    }
 end
