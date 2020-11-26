@@ -17,5 +17,5 @@ class Item < ApplicationRecord
     validates :price, numericality:{
         greater_than_or_equal_to: 300,
         less_than: 9999999
-    }
+    }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[\w-]{8,128}+\z/i } 
 end
