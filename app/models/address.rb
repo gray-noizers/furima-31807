@@ -6,8 +6,7 @@ class Address < ApplicationRecord
         validates :city
         validates :banchi
         #validates :building
-        validates :tel
-        #validates :log
+        validates :tel, length: { maximum: 11 }
     end
     validates :prefecture_id, numericality: { other_than: 0 }
 end

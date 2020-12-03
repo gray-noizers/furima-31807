@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     def create
         @log = Log.new(log_params)
         if @log.valid?
-            Payjp.api_key = "sk_test_fdaa8efebb1b2c879c51163c"
+            Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
             Payjp::Charge.create(
                 amount: @items.price,
                 card: log_params[:token],
