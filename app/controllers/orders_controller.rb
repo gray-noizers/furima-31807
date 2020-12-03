@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+    before_action :item_find
 
     def index
         @log = Log.new
@@ -17,5 +18,9 @@ class OrdersController < ApplicationController
     private
     def log_params
         params.permit(:postal_code, :prefecture_id, :city, :banchi, :building, :tel)
+    end
+
+    def item_find
+        @items = Item.find( params[:item_id])
     end
 end
