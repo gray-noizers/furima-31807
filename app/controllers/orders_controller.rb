@@ -3,7 +3,11 @@ class OrdersController < ApplicationController
     before_action :item_find
 
     def index
-        @log = Log.new
+        if @items.user != current_user
+            @log = Log.new
+        else
+            redirect_to root_path
+        end
     end
 
     def create
