@@ -17,7 +17,8 @@
 
 - has_many :items
 - has_many :logs
-
+ 
+ 
 
 ## items テーブル
 
