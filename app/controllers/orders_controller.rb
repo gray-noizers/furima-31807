@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     before_action :item_find
 
     def index
-        if @items.user != current_user && @items.order == false
+        if @items.user != current_user && @items.order == nil
             @log = Log.new
         else
             redirect_to root_path
