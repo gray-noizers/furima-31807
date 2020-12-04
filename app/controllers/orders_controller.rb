@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 
     def create
         @log = Log.new(log_params)
+        binding.pry
         if @log.valid?
             Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
             Payjp::Charge.create(
@@ -28,7 +29,7 @@ class OrdersController < ApplicationController
 
     private
     def log_params
-        params.permit(:postal_code, :prefecture_id, :city, :banchi, :building, :tel, :item_id).merge(token: params[:token], user_id: current_user.id)
+        params.require(:log).permit(:postal_code, :prefecture_id, :city, :banchi, :building, :tel, :item_id).merge(token: params[:token], user_id: current_user.id)
     end
 
     def item_find
