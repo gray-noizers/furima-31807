@@ -5,7 +5,6 @@ RSpec.describe Log, type: :model do
         @buyer = FactoryBot.create(:user)
         @item = FactoryBot.create(:item)
         @log = FactoryBot.build(:log ,user_id: @buyer.id, item_id: @item.id)
-        sleep(1)
     end
 
     context "購入ができる時" do
@@ -36,6 +35,12 @@ RSpec.describe Log, type: :model do
             @log.prefecture_id = nil
             @log.valid?
             expect(@log.errors.full_messages).to include("Prefecture is not a number")
+        end
+
+        it "都道府県は0は選べない" do
+            @log.prefecture_id = 0
+            @log.valid?
+            expect(@log.errors.full_messages).to include("Prefecture must be other than 0")
         end
 
         it "市区町村は選択必須である" do
