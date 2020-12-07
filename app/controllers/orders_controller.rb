@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
         end
     end
 
+    
     def create
         @log = Log.new(log_params)
         if @log.valid?
