@@ -14,7 +14,7 @@ class User < ApplicationRecord
     validates :family_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :first_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :email, uniqueness: true
-    validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[\w-]{8,128}+\z/i } 
+    validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[\w-]{6,128}+\z/i } 
     validates :password_confirmation
     validates :birthday
   end
