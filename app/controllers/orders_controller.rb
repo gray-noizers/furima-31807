@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
     private
     def log_params
-        params.require(:log).permit(:postal_code, :prefecture_id, :city, :banchi, :building, :tel).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
+        params.require(:log).permit(:postal_code, :prefecture, :city, :banchi, :building, :tel).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
     end
 
     def item_find
