@@ -8,13 +8,11 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @items.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
       <% if @items.order %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
       <% end %>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -26,17 +24,14 @@
     </div>
 
     <% if user_signed_in?  && current_user.id == @items.user_id %>
-    <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
+    <%= link_to '商品の編集', edit_item_path(@items), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
-    <%= link_to '削除', item_path, method: :delete, class:'item-destroy' %>
-
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
+    <%= link_to '削除', item_path(@items), method: :delete, class:'item-destroy' %>
     <% elsif user_signed_in? %>
       <% if @items.order == nil %>
         <%= link_to '購入画面に進む', item_orders_path(@items),class:"item-red-btn"%>
       <% end %>
     <% end %>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
     
 
 
@@ -85,21 +80,34 @@
     </div>
   </div>
   <%# /商品の概要 %>
-
+  <% if user_signed_in? %>
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+    <%= form_with(model: [@items, @comment], local: true) do |form| %>
+      <%= form.text_area :text, class:"items-text", placeholder:"コメント", rows: "2" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
+      
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
       </button>
-    </form>
+    <% end %>
+    <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+          <p>
+            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.text %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
   </div>
+  <% end %>
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
