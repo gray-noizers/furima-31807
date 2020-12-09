@@ -26,9 +26,9 @@
     </div>
 
     <% if user_signed_in?  && current_user.id == @items.user_id %>
-    <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
+    <%= link_to '商品の編集', edit_item_path(@items), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
-    <%= link_to '削除', item_path, method: :delete, class:'item-destroy' %>
+    <%= link_to '削除', item_path(@items), method: :delete, class:'item-destroy' %>
 
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <% elsif user_signed_in? %>
@@ -86,7 +86,7 @@
   <% if user_signed_in? %>
   <div class="comment-box">
     <%= form_with(model: [@items, @comment], local: true) do |form| %>
-      <textarea class="comment-text"></textarea>
+      <%= form.text_area :text, class:"items-text", placeholder:"コメント", rows: "2" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
