@@ -85,7 +85,7 @@
   <%# /商品の概要 %>
   <% if user_signed_in? %>
   <div class="comment-box">
-    <form>
+    <%= form_with(model: [@items, @comment], local: true) do |form| %>
       <textarea class="comment-text"></textarea>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
@@ -97,7 +97,7 @@
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
       </button>
-    </form>
+    <% end %>
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
       <% if @comments %>
